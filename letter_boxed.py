@@ -1,5 +1,8 @@
+# type in the puzzle letters starting with the North side on the left. All caps, no spaces.
+# e.g., 'OEAQMHCLUINR'
 string = 'OEAQMHCLUINR'
 
+# parent function that does each step in sequence
 def findSequence(string):
     dictionary = buildDictionary(string)
     words = identifyValidWords(dictionary)
@@ -7,6 +10,9 @@ def findSequence(string):
     solution = checkForTwoWordSolution(solnDict)
     return solution
 
+# create a dictionary of 'child letters' for each letter on the board
+# each letter can only be followed by one of the 'child letters' as 
+# defined by the rules of the game
 def buildDictionary(string):
     letters = list(string)
     sides_dict = {
@@ -21,6 +27,8 @@ def buildDictionary(string):
             dictionary[l] = list(set(letters) - set(sides_dict[side]))
     return dictionary
 
+# loop through the scrabble dictionary (words.txt) to identify all of the words
+# that can be constructed in this puzzle
 def identifyValidWords(dictionary):
     valid_words = []
     with open('/Users/alex/Desktop/words.txt') as f:
@@ -48,6 +56,8 @@ def identifyValidWords(dictionary):
                     break
     return valid_words
 
+# for each combination of letters in the box, identify all of the words that
+# use all of the letters and return as a dictionary
 def createSolutionDictionary(words):
     solnDict = {}
     for word in words:
@@ -58,6 +68,9 @@ def createSolutionDictionary(words):
             solnDict[letters] = [word]
     return solnDict
 
+# find complementary sets of letters and the words associated with these
+# sets. Return all of the pairs of words that solve the problem ordered by
+# the number of redundant letters (ascending)
 def checkForTwoWordSolution(solnDict):
     viablePairs = []
     solutions = []
