@@ -1,6 +1,10 @@
 # type in the puzzle letters starting with the North side on the left. All caps, no spaces.
 # e.g., 'OEAQMHCLUINR'
-string = 'OEAQMHCLUINR'
+
+if(length(argv) > 1):
+    string = str(argv[1])
+else:
+    string = 'OEAQMHCLUINR'
 
 # parent function that does each step in sequence
 def findSequence(string):
@@ -11,7 +15,7 @@ def findSequence(string):
     return solution
 
 # create a dictionary of 'child letters' for each letter on the board
-# each letter can only be followed by one of the 'child letters' as 
+# each letter can only be followed by one of the 'child letters' as
 # defined by the rules of the game
 def buildDictionary(string):
     letters = list(string)
