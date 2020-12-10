@@ -1,8 +1,10 @@
 # type in the puzzle letters starting with the North side on the left. All caps, no spaces.
 # e.g., 'OEAQMHCLUINR'
 
-if(length(argv) > 1):
-    string = str(argv[1])
+import sys
+
+if(length(sys.argv) > 1):
+    string = str(sys.argv[1])
 else:
     string = 'OEAQMHCLUINR'
 
